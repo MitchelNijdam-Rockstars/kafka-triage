@@ -43,7 +43,7 @@ repositories {
 }
 
 configurations {
-    all*.exclude module : 'spring-boot-starter-logging'
+    all*.exclude module: 'spring-boot-starter-logging'
 }
 
 dependencies {
@@ -71,6 +71,8 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compile 'org.springframework.boot:spring-boot-devtools'
 
     // Test
     testImplementation "org.apache.kafka:kafka_2.11:${kafkaVersion}:test"

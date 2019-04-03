@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Kafka triage</title>
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	        crossorigin="anonymous"></script>
+
+	<!-- VueJS for DOM operations -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- development version, includes helpful console warnings -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> production version, optimized for size and speed -->
+
+	<!-- Axios for API operations -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Charmonman" rel="stylesheet">
+	<link rel="stylesheet" href="css/common.css">
+	<script src="js/main.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid text-center">
+		<span class="brand" href="#">KAFKA TRIAGE</span>
+	</div>
+</nav>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Topics and lag
+				</div>
+				<div class="panel-body" id="vue-topiclist">
+					<div v-if="loading" style="color: green;">Loading...</div>
+					<div v-if="empty" style="color: red;">No records found</div>
+					<div v-if="errored" style="color: red;">Error occured while fetching topics,<br>see console for
+						details
+					</div>
+					<button-topic
+							v-for="topic in topicList"
+							v-bind:topic="topic">
+					</button-topic>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+						Unprocessed messages
+				</div>
+				<div class="panel-body" id="vue-recordlist">
+					<div v-if="loading" style="color: green;">Loading...</div>
+					<div v-if="empty" style="color: red;">No records found</div>
+					<div v-if="errored" style="color: red;">Error occured while fetching records,<br>see console for
+						details
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
